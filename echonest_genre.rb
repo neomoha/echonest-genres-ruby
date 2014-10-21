@@ -41,7 +41,8 @@ if __FILE__ == $0
   OptionParser.new do |opts|
     opts.banner = "Usage: echonest_genre.rb [options]"
     opts.on('-n', '--name NAME', 'Artist name') { |v| options.name = v }
-    opts.on('-m', '--genre_method METHOD', 'Get "single" genre or a "list" genres (default="single")') { |v| options.genre_method = v }
+    opts.on('-m', '--genre_method METHOD', 'Get "single" genre or a "list" genres (default="single")')\
+      { |v| options.genre_method = v }
   end.parse!
   
   if options.name == nil
