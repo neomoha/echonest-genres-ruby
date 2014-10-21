@@ -28,22 +28,35 @@ Usage: echonest_genre.rb [options]
     -m, --genre_method METHOD        Get "single" genre or a "list" genres (default="single")
     
 $ ruby echonest_genre.rb -n Diversidad
+
 Artist 'Diversidad' has genre 'european' in echonest
 
+
 $ ruby echonest_genre.rb -n Diversidad -m list
+
 Artist Diversidad does not have genre information in echonest
 
+
 $ ruby echonest_genre.rb -n Luche -m list
+
 Artist Luche does not have genre information in echonest
 
+
 $ ruby echonest_genre.rb -n Luche -m single
+
 Artist 'Luche' has genre 'italian rap' in echonest
 
+
 $ ruby echonest_genre.rb -n Weezer -m single
+
 Artist 'Weezer' has genre 'rock' in echonest
 
+
 $ ruby echonest_genre.rb -n Weezer -m list
+
 Artist Weezer has genres ["permanent wave", "alternative rock", "punk christmas", "power pop", "indie christmas", "pop rock", "pop christmas", "rock"] in echonest
 
+
 $ ruby echonest_genre.rb -n Weezer
+
 Artist 'Weezer' has genre 'rock' in echonest
