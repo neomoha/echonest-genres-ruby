@@ -23,9 +23,13 @@ Examples
 ------
 
 $ ruby echonest_genre.rb -h
+
 Usage: echonest_genre.rb [options]
+
     -n, --name NAME                  Artist name
+    
     -m, --genre_method METHOD        Get "single" genre or a "list" genres (default="single")
+    
     
 $ ruby echonest_genre.rb -n Diversidad
 
