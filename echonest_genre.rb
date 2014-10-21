@@ -12,7 +12,7 @@ Echowrap.configure do |config|
 end
 
 def find_artist(artist_name)
-  artist = Echowrap.artist_search(:name => artist_name, :results => 1, :bucket => ['genre'])
+  Echowrap.artist_search(:name => artist_name, :results => 1, :bucket => ['genre'])
 end
 
 def get_genres(artist)
@@ -25,7 +25,7 @@ end
 
 def get_genre(artist)
   genre = nil
-  url = "http://developer.echonest.com/api/v4/artist/genres?api_key="<<API_KEY<<"&id="<<artist.id
+  url = "http://developer.echonest.com/api/v4/artist/genres?api_key="+API_KEY+"&id="+artist.id
   response = HTTParty.get(url)
   parsed_response = JSON.parse(response.body)
   if parsed_response["response"]["status"]["code"] == 0
@@ -40,8 +40,8 @@ if __FILE__ == $0
   options.genre_method="single"
   OptionParser.new do |opts|
     opts.banner = "Usage: echonest_genre.rb [options]"
-    opts.on('-n', '--name NAME', 'Artist name') { |v| options[:name] = v }
-    opts.on('-m', '--genre_method METHOD', 'Get "single" genre or a "list" genres (default="single")') { |v| options[:genre_method] = v }
+    opts.on('-n', '--name NAME', 'Artist name') { |v| options.name = v }
+    opts.on('-m', '--genre_method METHOD', 'Get "single" genre or a "list" genres (default="single")') { |v| options.genre_method = v }
   end.parse!
   
   if options.name == nil
@@ -53,9 +53,9 @@ if __FILE__ == $0
     if options.genre_method == "list"
       genres = get_genres(result[0])
       if genres.count > 0
-        puts "Artist #{result[0].name} has genres #{genres} in echonest"
+        puts "Artist '#{result[0].name}' has genres #{genres} in echonest"
       else
-        puts "Artist #{result[0].name} does not have genre information in echonest"
+        puts "Artist '#{result[0].name}' does not have genre information in echonest"
       end
     else # single
       genre = get_genre(result[0])
@@ -66,6 +66,6 @@ if __FILE__ == $0
       end
     end
   else
-    puts "Artist #{options[:name]} does not exist in echonest"
+    puts "Artist '#{options.name}' does not exist in echonest"
   end
 end
